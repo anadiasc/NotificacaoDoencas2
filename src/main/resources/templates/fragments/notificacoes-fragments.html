@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <table th:fragment="tabela-dados" id="tabela-dados">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Doença</th>
+                <th scope="col">Código CID</th>
+                <th scope="col">Data da Notificação</th>
+                <th scope="col">Município</th>
+                <th scope="col">Nome do Paciente</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="linhasTabela" th:fragment="linhasTabela">
+            <tr th:each="notificacao : ${resultados}">
+                <td th:text="${notificacao.id}"></td>
+                <td th:text="${notificacao.doenca}"></td>
+                <td th:text="${notificacao.codigoCID}"></td>
+                <td th:text="${notificacao.dataNotificacao}"></td>
+                <td th:text="${notificacao.municipioNotificacao}"></td>
+                <td th:text="${notificacao.nomePaciente}"></td>
+                <td th:text="${notificacao.idade}"></td>
+                <td th:text="${notificacao.sexo}"></td>
+                <td>
+                    <a th:href="@{/notificacao(id=${notificacao.id})}" class="btn btn-primary btn-sm" role="button">Editar</a>
+                    <form th:action="@{/notificacao/{id}/deletar(id=${notificacao.id})}" th:method="delete">
+                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</html>
+
